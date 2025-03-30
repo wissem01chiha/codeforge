@@ -2,6 +2,6 @@
 name = "codeforge"
 version = "0.1.0"
 authors = ["Wissem Chiha <chihawissem08@gmail.com>"]
-edition = "2025"
+edition = "2024"
 [dependencies]
 my_library = { path = "~/code/my_library" }
