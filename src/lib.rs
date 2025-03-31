@@ -1,43 +1,44 @@
+/**
+ * main librray core structures
+ */
+pub struct FunParser;
+pub struct ClassParser;
+enum FunT { Bool = 0, Int32 = 1, Int64 = 2, Int8 = 3, Float = 4 }
 
-pub trait FunParser{
+/** all error code gnerators code erros  */
+enum ErrCode {
 
 }
-pub trait ClassParser {
-
-}
 
 
-// basic genrator for language specific routines (functions , classes )
-pub trait TestGenerator {
-    fn generate(&self, function_name: &str) -> String;
-}
+/// ------------------------------------
 
-// Factory Function
-pub fn create_generator(language: &str) -> Box<dyn TestGenerator> {
-    match language {
-        "C++" => Box::new(GoogleTestGenerator),
-        "Python" => Box::new(PytestGenerator),
-        _ => panic!("Unsupported language!"),
+impl FunParser {
+    pub fn parse_signature(&self, code: &str) -> Option<String> {
+        Some(code.lines().next()?.trim().to_string())
+    }
+
+    pub fn parse_return_type(&self, code: &str) -> Option<String> {
+        let first_line = code.lines().next()?;
+        Some(first_line.split_whitespace().next()?.to_string())
+    }
+
+    pub fn parse_function_name(&self, code: &str) -> Option<String> {
+        Some("example_function".to_string()) 
+    }
+
+    pub fn parse_parameters(&self, code: &str) -> Vec<(String, String)> {
+        vec![
+            ("int".to_string(), "param1".to_string()), 
+            ("float".to_string(), "param2".to_string())
+        ]
+    }
+
+    pub fn validate_function(&self, code: &str) -> bool {
+        code.contains("(") && code.contains(")")
     }
 }
-
-
-// google test plugin gnerator 
-// by defut it gnerate all possible template tests and 
-// corrponding documenttaion of each test case
-pub struct GoogleTestGenerator;
-
-impl TestGenerator for GoogleTestGenerator {
-    fn generate(&self, function_name: &str) -> String {
-        format!("TEST({}, {}) {{ /* TODO */ }}", function_name, "TestCaseName")
-    }
-}
-
-// basic types can be passed to a function, declraitves, 
-enum fun_t {
-    bool,
-    int32,
-    int64,
-    int8,
-    float
+  
+impl  ClassParser {
+    
 }

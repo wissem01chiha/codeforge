@@ -1,19 +1,15 @@
+/** 
+* codeforage 2025
+* CopyRights Wissem CHIHA 2025
+* 
+*/
 
 mod lib;
+mod misra;
 
 fn main() {
     println!("Hello, world!");
 }
 
-
-
-
-
-pub struct PytestGenerator;
-impl TestGenerator for PytestGenerator {
-    fn generate(&self, function_name: &str) -> String {
-        format!("def test_{}():\n    pass", function_name)
-    }
-}
 
 
